@@ -89,7 +89,7 @@ namespace AGLibrary.Parser
         }
         private int SearchVar()
         {
-            Regex reg = new Regex(@"[X|x]{1}[0-9]"); // Будем искать неизвестные в формуле. Не более 10 переменных.
+            Regex reg = new Regex(@"[X|x]{1,}\d{1,}"); // Будем искать неизвестные в формуле. Не более 10 переменных.
             foreach (Match t in reg.Matches(_workFunc))
             {
                 _varList.Add(t.Value); // Добавляем найденную неизвестную
@@ -272,7 +272,8 @@ namespace AGLibrary.Parser
 
             if (_stack.Peek().Contains("x"))
             {
-                a = _args[_stack.Pop()];
+                String f = _stack.Pop();
+                a = _args[f];
             }
             else a = Convert.ToDouble(_stack.Pop());
 
