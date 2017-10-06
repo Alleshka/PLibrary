@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-
-namespace AGLibrary.Vector
+﻿namespace AGLibrary.Vector
 {
     public class Point:Vector<double>
     {
