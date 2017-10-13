@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Runtime.Serialization;
 namespace AGLibrary.Vector
 {
+    [DataContract]
     // Класс вектор
     public class Vector<T> : IEnumerable
     {
         // Пригодится дял печати вектора 
         public delegate void print(Vector<T> vector);
 
+        [DataMember]
         private T[] _numbers; // Содержимое вектора 
         // Размер вектора
         public int Lengh
@@ -31,6 +33,7 @@ namespace AGLibrary.Vector
         /// </summary>
         public Vector(T[] vector) => _numbers = (T[])vector.Clone();
         public Vector(List<T> vector) => _numbers = (T[])vector.ToArray().Clone();
+        public Vector(Vector<double> vector) => _numbers = (T[])vector._numbers.Clone();
 
         /// Устанавливаем значение по умолчанию
         public void NullInit()
@@ -58,7 +61,6 @@ namespace AGLibrary.Vector
         {
             return _numbers.GetEnumerator();
         }
-
         // Перегруженные операторы 
         public static Vector<T> operator +(Vector<T> a, Vector<T> b)
         {
