@@ -9,7 +9,7 @@ namespace AGLibrary.Vector
 {
     [DataContract]
     // Класс матрица
-    public class Matrix <T>
+    public class Matrix<T>
     {
         [DataMember]
         private T[,] _numbers; // Цифирки 
@@ -36,7 +36,7 @@ namespace AGLibrary.Vector
                 }
             }
         }
-        
+
         public Matrix(int h, int w)
         {
             _numbers = new T[w, h]; // Выделяем память 
@@ -49,6 +49,18 @@ namespace AGLibrary.Vector
         }
         public Matrix(T[,] matrix) => _numbers = (T[,])matrix.Clone();
 
+        public Vector<T> this[int i]
+        {
+            get
+            {
+                List<T> list = new List<T>();
+                for (int j = 0; j < Width; j++)
+                {
+                    list.Add(_numbers[i, j]);
+                }
+                return new Vector<T>(list);
+            }
+        }
         public T this[int i, int j]
         {
             get => _numbers[i, j];

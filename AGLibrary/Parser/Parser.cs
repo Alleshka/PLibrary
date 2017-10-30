@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using AGLibrary.Vector;
 
 namespace AGLibrary.Parser
 {
+    using AGLibrary.Vector;
+
     public class Parser
     {
         private List<String> _varList; // Список неизвестных переменных 
@@ -104,11 +105,11 @@ namespace AGLibrary.Parser
             // Пока есть символы для чтения
             while (_workFunc.Length != 0)
             {
-                 // DebugConsole();
+                // DebugConsole();
 
                 if (!CheckNumber()) // Если не число
                 {
-                    if(!CheckFunct())
+                    if (!CheckFunct())
                     {
                         if (!CheckOpenBracket()) // Если не открывающая скобка
                         {
@@ -147,7 +148,7 @@ namespace AGLibrary.Parser
                 }
                 else // Если операция
                 {
-                     ActionOperate(curSyb);
+                    ActionOperate(curSyb);
                 }
 
                 _pollandList.RemoveAt(0);
@@ -167,7 +168,7 @@ namespace AGLibrary.Parser
                 syb += FirstSyb; // Сохраняем
                 _workFunc = _workFunc.Remove(0, 1);// Удаляем из строки
 
-                if(_workFunc.Length!=0) syb = ReadWhileNumber(syb);
+                if (_workFunc.Length != 0) syb = ReadWhileNumber(syb);
                 _pollandList.Add(syb); // Добавляем неизвестную в выходной список
 
                 return true;
@@ -188,7 +189,7 @@ namespace AGLibrary.Parser
         {
             if (FirstSyb == ")")
             {
-                while (_stack.Peek()!="(") // до тех пор, пока верхним элементом стека не станет открывающая скобка, выталкиваем элементы из стека в выходную строку.
+                while (_stack.Peek() != "(") // до тех пор, пока верхним элементом стека не станет открывающая скобка, выталкиваем элементы из стека в выходную строку.
                 {
                     _pollandList.Add(_stack.Pop());
                 }
@@ -238,13 +239,13 @@ namespace AGLibrary.Parser
                 case "*": return 2;
                 case ":": return 2;
                 case "^": return 3;
-               
+
             }
             return 0;
         }
         private String ReadWhileNumber(String syb)
         {
-            while (FirstNumb()&&(_workFunc.Length!=0)) // Пока считываем числа
+            while (FirstNumb() && (_workFunc.Length != 0)) // Пока считываем числа
             {
                 syb += FirstSyb;
                 _workFunc = _workFunc.Remove(0, 1); // Удаляем символ
@@ -309,7 +310,7 @@ namespace AGLibrary.Parser
         }
 
         private void DebugConsole()
-        { 
+        {
             Console.WriteLine("________________________________________________");
             Console.WriteLine("Строка: " + _workFunc);
             Console.WriteLine("Читаем: " + FirstSyb);
@@ -320,4 +321,3 @@ namespace AGLibrary.Parser
         }
     }
 }
-    

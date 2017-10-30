@@ -1,11 +1,11 @@
 ﻿using System;
-using System.IO;
-using System.Runtime.Serialization.Json;
 
 namespace AGLibrary.Files
 {
-    
-    public class AGFile
+    using System.Runtime.Serialization.Json;
+    using System.IO;
+
+    public class FileWork
     {
         /// <summary>
         ///  Сохранить данные в формате JSON
@@ -21,6 +21,7 @@ namespace AGLibrary.Files
                 json.WriteObject(file, data); // Сохраняем объект
             }
         }
+
         /// <summary>
         /// Считывает данные из файла 
         /// </summary>
@@ -33,31 +34,6 @@ namespace AGLibrary.Files
             {
                 DataContractJsonSerializer json = new DataContractJsonSerializer(typeof(T));
                 data = (T)json.ReadObject(file);
-            }
-        }
-
-        /// <summary>
-        /// Сохраняет строку в файл
-        /// </summary>
-        /// <param name="data">Строка</param>
-        /// <param name="filePath">Путь до файла</param>
-        public static void SaveData(String data, String filePath)
-        {
-            using (StreamWriter file = new StreamWriter(new FileStream(filePath, FileMode.OpenOrCreate)))
-            {
-                file.WriteLine(data);
-            }
-        }   
-        /// <summary>
-        /// Считывает строку из файла
-        /// </summary>
-        /// <param name="filePath">Путь до файла</param>
-        /// <returns></returns>
-        public static String ReadString(String filePath)
-        {
-            using (StreamReader file = new StreamReader(new FileStream(filePath, FileMode.Open)))
-            {
-                return file.ReadToEnd();
             }
         }
     }

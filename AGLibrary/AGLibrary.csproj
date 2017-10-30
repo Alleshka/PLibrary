@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{17295470-DD2D-49C0-8CD0-2B0E69E4C0C1}</ProjectGuid>
+    <ProjectGuid>{F637F1E6-A63A-4913-A1B7-5A74F864820D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AGLibrary</RootNamespace>
@@ -41,12 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Files\AGFile.cs" />
+    <Compile Include="FileWork\FileWork.cs" />
     <Compile Include="Parser\Parser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vector\Matrix.cs" />
     <Compile Include="Vector\Point.cs" />
     <Compile Include="Vector\Vector.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,6 +1,6 @@
 ﻿namespace AGLibrary.Vector
 {
-    public class Point:Vector<double>
+    public class Point : Vector<double>
     {
         public Point(double a, double b) : base(new double[2] { a, b })
         {

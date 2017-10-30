@@ -2,11 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+
 namespace AGLibrary.Vector
 {
     [DataContract]
     // Класс вектор
-    public class Vector<T> : IEnumerable
+    public class Vector<T> : IEnumerable, ICloneable
     {
         // Пригодится дял печати вектора 
         public delegate void print(Vector<T> vector);
@@ -56,11 +57,23 @@ namespace AGLibrary.Vector
             }
             else throw new Exception("Неверная ссылка на делегат");
         }
+        public String PrintVector()
+        {
+            String tmp = "";
+            foreach (var k in _numbers) tmp += k + ";";
+            return tmp;
+        }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _numbers.GetEnumerator();
         }
+
+        public object Clone()
+        {
+            return new Vector<T>(_numbers);
+        }
+
         // Перегруженные операторы 
         public static Vector<T> operator +(Vector<T> a, Vector<T> b)
         {
